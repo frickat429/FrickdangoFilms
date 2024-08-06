@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\FrickdangoFilms.Services\FrickdangoFilms.Services.csproj" />
+    <ProjectReference Include="..\FrickdangoFilms.Models\FrickdangoFilms.Models.csproj" />
+    <ProjectReference Include="..\FrickdangoFilms.Data\FrickdangoFilms.Data.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>
