@@ -1,4 +1,4 @@
-namespace FrickdangoFilms.WebMvc.Models;
+namespace FrickdangoFilms.Models;
 
 public class ErrorViewModel
 {

@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using FrickdangoFilms.WebMvc.Models;
+using FrickdangoFilms.Models;
 
 namespace FrickdangoFilms.WebMvc.Controllers;
 
