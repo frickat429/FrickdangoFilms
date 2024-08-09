@@ -3,6 +3,6 @@ namespace FrickdangoFilms.Models.Genre;
 public class GenreViewModel 
 {
     public int GenreId { get; set; } 
-    public string GenreName { get; set; } = string.Empty;
+    public string MovieGenre { get; set; } = string.Empty;
 }
 
