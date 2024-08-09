@@ -1,4 +1,4 @@
-namespace FrickdangoFilms.Models;
+namespace FrickdangoFilms.Models.Movies;
 
 public class MovieCreateViewModel 
 {
