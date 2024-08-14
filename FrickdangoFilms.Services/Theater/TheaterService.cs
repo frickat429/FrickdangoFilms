@@ -21,7 +21,7 @@ namespace FrickdangoFilms.Services.Theater
                 .Select(t => new TheaterViewModel
                 {
                     Id = t.Id,
-                    TheaterName = t.TheaterName // Ensure this matches your ViewModel
+                    TheaterName = t.TheaterName 
                 })
                 .ToListAsync();
         }
@@ -34,7 +34,7 @@ namespace FrickdangoFilms.Services.Theater
                 .Select(t => new TheaterViewModel
                 {
                     Id = t.Id,
-                    TheaterName = t.TheaterName // Ensure this matches your ViewModel
+                    TheaterName = t.TheaterName 
                 })
                 .FirstOrDefaultAsync();
         }
