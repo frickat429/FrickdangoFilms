@@ -1,7 +1,8 @@
 namespace FrickdangoFilms.Models.Movies ;
 
 public class MovieEditViewModel
-{
+{ 
+    public int Id { get; set; }
     public string? MovieTitle { get; set; }
     public string? MovieDescription { get; set; } 
     public int RuntimeInMinutes { get; set; } 
