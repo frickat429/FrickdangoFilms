@@ -27,17 +27,32 @@ namespace FrickdangoFilms.Services.MPAA_Rating
         }
 
         // Get an MPAA rating by Id
-        public async Task<MPAA_RatingViewModel> GetMPAARatingByIdAsync(int id)
+public async Task<MPAA_RatingViewModel?> GetMPAARatingByIdAsync(int id)
+    {
+    return await _context.MPAA_Ratings
+        .Where(r => r.Id == id)
+        .Select(r => new MPAA_RatingViewModel
         {
-            return await _context.MPAA_Ratings
-                .Where(r => r.Id == id)
-                .Select(r => new MPAA_RatingViewModel
-                {
-                    Id = r.Id,
-                    MovieRating = r.MovieRating // Ensure this matches your ViewModel property
-                })
-                .FirstOrDefaultAsync();
-        }
+            Id = r.Id,
+            MovieRating = r.MovieRating // Ensure this matches your ViewModel property
+        })
+        .FirstOrDefaultAsync();
+    } 
+
+    public async Task CreateMovieRatingAsync(MPAA_RatingCreateViewModel model)
+    {
+        var rating = new Data.Entities.MPAA_Rating
+        {
+         MovieRating = model.MovieRating
+        }; 
+
+        _context.MPAA_Ratings.Add(rating);
+        await _context.SaveChangesAsync();
+        
     }
+
+    } 
+
+    
 }
 

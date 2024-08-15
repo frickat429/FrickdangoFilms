@@ -27,16 +27,26 @@ namespace FrickdangoFilms.Services.Theater
         }
 
         // Get a theater by Id
-        public async Task<TheaterViewModel> GetTheaterByIdAsync(int id)
+public async Task<TheaterViewModel?> GetTheaterByIdAsync(int id)
+    {
+    return await _context.Theaters
+        .Where(t => t.Id == id)
+        .Select(t => new TheaterViewModel
         {
-            return await _context.Theaters
-                .Where(t => t.Id == id)
-                .Select(t => new TheaterViewModel
-                {
-                    Id = t.Id,
-                    TheaterName = t.TheaterName 
-                })
-                .FirstOrDefaultAsync();
-        }
+            Id = t.Id,
+            TheaterName = t.TheaterName
+        })
+        .FirstOrDefaultAsync();
+    }
+
+    public async Task CreateTheaterAsync(TheaterCreateViewModel model)
+    {
+        var theater = new Data.Entities.Theater
+        {
+            TheaterName = model.TheaterName
+        };
+        _context.Theaters.Add(theater);
+        await _context.SaveChangesAsync();
+    }
     }
 }

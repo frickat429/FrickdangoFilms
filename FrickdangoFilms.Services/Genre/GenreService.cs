@@ -27,16 +27,29 @@ namespace FrickdangoFilms.Services.Genre
         }
 
         // Get a genre by Id
-        public async Task<GenreViewModel> GetGenreByIdAsync(int id)
+public async Task<GenreViewModel?> GetGenreByIdAsync(int id)
+{
+    return await _context.Genres
+        .Where(g => g.Id == id)
+        .Select(g => new GenreViewModel
         {
-            return await _context.Genres
-                .Where(g => g.Id == id)
-                .Select(g => new GenreViewModel
-                {
-                    GenreId = g.Id,
-                    MovieGenre = g.MovieGenre // Ensure the property name matches the ViewModel
-                })
-                .FirstOrDefaultAsync();
+            GenreId = g.Id,
+            MovieGenre = g.MovieGenre 
+        })
+        .FirstOrDefaultAsync();
+}
+
+        //Create new genre 
+        public async Task CreateGenreAsync(GenreCreateViewModel model) 
+        {
+            var genre = new Data.Entities.Genre
+            {
+                MovieGenre = model.MovieGenre
+            }; 
+            _context.Genres.Add(genre);
+            await _context.SaveChangesAsync();
         }
+
+
     }
 }

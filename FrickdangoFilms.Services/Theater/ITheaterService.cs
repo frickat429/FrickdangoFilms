@@ -6,4 +6,5 @@ public interface ITheaterService
 {
     Task<IEnumerable<TheaterViewModel>> GetAllTheaterAsync();
     Task<TheaterViewModel>GetTheaterByIdAsync(int id) ;
+    Task CreateTheaterAsync(TheaterCreateViewModel model);
 }

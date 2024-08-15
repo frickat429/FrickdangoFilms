@@ -32,23 +32,22 @@ public class MovieService : IMovieService
     }
 
     // Read by Id
-    public async Task<MovieViewModel> GetMovieByIdAsync(int id)
-    {
-        return await _context.Movies
-                             .Where(m => m.Id == id)
-                             .Select(m => new MovieViewModel
-                             {
-                                 Id = m.Id,
-                                 MovieTitle = m.MovieTitle,
-                                 MovieDescription = m.MovieDescription,
-                                 RuntimeInMinutes = m.RuntimeInMinutes,
-                                 MovieGenre = m.Genre.MovieGenre,
-                                 MPAA_Rating = m.MPAA_Rating.MovieRating,
-                                 TheaterName = m.Theater.TheaterName
-                             })
-                             .FirstOrDefaultAsync();
-    }
-
+public async Task<MovieViewModel?> GetMovieByIdAsync(int id)
+{
+    return await _context.Movies
+                         .Where(m => m.Id == id)
+                         .Select(m => new MovieViewModel
+                         {
+                             Id = m.Id,
+                             MovieTitle = m.MovieTitle,
+                             MovieDescription = m.MovieDescription,
+                             RuntimeInMinutes = m.RuntimeInMinutes,
+                             MovieGenre = m.Genre.MovieGenre,
+                             MPAA_Rating = m.MPAA_Rating.MovieRating,
+                             TheaterName = m.Theater.TheaterName
+                         })
+                         .FirstOrDefaultAsync();
+}
     // Create
     public async Task CreateMovieAsync(MovieCreateViewModel model)
     {
