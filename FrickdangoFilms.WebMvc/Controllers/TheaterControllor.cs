@@ -1,3 +1,4 @@
+using FrickdangoFilms.Models.Theater;
 using FrickdangoFilms.Services.Theater;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,5 +26,22 @@ public async Task<IActionResult> Details(int id)
         return NotFound();
     } 
     return View(theater);
+} 
+
+//Theater Create 
+public IActionResult Create()
+{
+    return View();
+}
+
+[HttpPost] 
+public async Task<IActionResult> Create(TheaterCreateViewModel model)
+{
+    if(ModelState.IsValid) 
+    {
+        await _theaterService.CreateTheaterAsync(model);
+        return RedirectToAction(nameof(Index));
+    }
+    return View(model);
 }
 }

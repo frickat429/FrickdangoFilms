@@ -1,3 +1,4 @@
+using FrickdangoFilms.Models.MPAA_Rating;
 using FrickdangoFilms.Services.MPAA_Rating;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,6 +27,22 @@ public class MPAA_RatingController : Controller
     }
     return View(mpaaRating);
     } 
+
+    public IActionResult Create() 
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(MPAA_RatingCreateViewModel model) 
+    {
+      if(ModelState.IsValid) 
+      {
+        await _mpaaRatingService.CreateMovieRatingAsync(model);
+        return RedirectToAction(nameof(Index));
+      }
+      return View(model);
+    }
     
   
 }

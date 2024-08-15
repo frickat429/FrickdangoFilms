@@ -1,5 +1,6 @@
 using System.Net;
 using FrickdangoFilms.Data.Entities;
+using FrickdangoFilms.Models.Genre;
 using FrickdangoFilms.Services.Genre;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,5 +28,22 @@ public async Task<IActionResult> Details(int id)
         return NotFound();
     } 
     return View(genre);
+}
+
+//Get create 
+public IActionResult Create()
+{
+    return View();
+}
+
+[HttpPost] 
+public async Task<IActionResult>  Create(GenreCreateViewModel model ) 
+{
+    if(ModelState.IsValid) 
+    {
+        await _genreService.CreateGenreAsync(model);
+        return RedirectToAction(nameof(Index));
+    }
+    return View(model);
 }
 }
