@@ -1,0 +1,35 @@
+@model IEnumerable<FrickdangoFilms.Models.Movies.MovieIndexVM>
+
+@{
+    ViewData["Title"] = "Movie Index";
+} 
+
+<div class="d-flex flex-wrap justify-between align-items-baseline">
+    <h1>Movies</h1>
+    <a asp-controller="Movie" asp-action="Create" class="btn btn-sm btn-success">Create a Movie</a>
+</div>
+
+<table class="table table-striped border">
+    <thead>
+        <tr>
+            <th>Id</th> 
+            <th>Movie Title</th> 
+            <th>MPAA Rating</th>
+        </tr>
+    </thead>  
+    <tbody>
+        @foreach (var movie in Model) 
+        {
+            <tr>
+                <td>@movie.Id</td> 
+                <td>@movie.MovieTitle</td>
+                <td>@movie.MPAA_Rating</td>
+                <td class="text-end">
+                    <a asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-controller="Movie" asp-action="Edit" asp-route-id="@movie.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-controller="Movie" asp-action="Delete" asp-route-id="@movie.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td> 
+            </tr>
+        }
+    </tbody>
+</table>

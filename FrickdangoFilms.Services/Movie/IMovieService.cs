@@ -7,7 +7,7 @@ namespace FrickdangoFilms.Services.Movie ;
 
 public interface IMovieService 
 {
-  Task<IEnumerable<MovieViewModel>> GetAllMoviesAsync();
+  Task<IEnumerable<MovieIndexVM>> GetAllMoviesAsync();
     Task<MovieViewModel> GetMovieByIdAsync(int id);
     Task CreateMovieAsync(MovieCreateViewModel model);
     Task UpdateMovieAsync(int id, MovieEditViewModel model);

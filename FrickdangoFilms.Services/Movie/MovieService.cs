@@ -15,18 +15,15 @@ public class MovieService : IMovieService
     }
 
     // Read All
-    public async Task<IEnumerable<MovieViewModel>> GetAllMoviesAsync()
+    public async Task<IEnumerable<MovieIndexVM>> GetAllMoviesAsync()
     {
         return await _context.Movies
-                             .Select(m => new MovieViewModel
+                             .Select(m => new MovieIndexVM
                              {
                                  Id = m.Id,
                                  MovieTitle = m.MovieTitle,
-                                 MovieDescription = m.MovieDescription,
-                                 RuntimeInMinutes = m.RuntimeInMinutes,
-                                 MovieGenre = m.Genre.MovieGenre,
                                  MPAA_Rating = m.MPAA_Rating.MovieRating,
-                                 TheaterName = m.Theater.TheaterName
+                                 
                              })
                              .ToListAsync();
     }

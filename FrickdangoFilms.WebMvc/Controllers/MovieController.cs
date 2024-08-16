@@ -1,16 +1,20 @@
 using System.Net;
 using FrickdangoFilms.Models.Movies;
+using FrickdangoFilms.Services.Genre;
 using FrickdangoFilms.Services.Movie;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FrickdangoFilms.WebMvc.Controllers ;
 
 public class MovieController : Controller
 {
 private readonly IMovieService _movieService; 
-public MovieController(IMovieService movieService) 
+private readonly IGenreService _genreService;
+public MovieController(IMovieService movieService, IGenreService genreService) 
 {
-    _movieService = movieService; 
+    _movieService = movieService;  
+    _genreService = genreService; 
 } 
 
 //Get Movie/Index 
@@ -32,10 +36,17 @@ public async Task<IActionResult> Details(int id)
 } 
 
 //Get Movie/Create 
-public IActionResult Create() 
-{
+public async Task<IActionResult> Create() 
+{ 
+    var genres = await _genreService.GetAllGenresAsync();
+    ViewBag.Genres = new SelectList(genres, "GenreId", "MovieGenre");
+    
     return View();
 } 
+
+//Get Genre 
+
+
 
 //Movie Create 
 [HttpPost]
@@ -46,6 +57,7 @@ public async Task<IActionResult> Create(MovieCreateViewModel model)
         await _movieService.CreateMovieAsync(model); 
         return RedirectToAction(nameof(Index)); 
     } 
+    
     return View(model); 
 } 
 
@@ -57,6 +69,9 @@ public async Task<IActionResult> Edit(int id)
     {
         return NotFound();
     } 
+       var genres = await _genreService.GetAllGenresAsync();
+    ViewBag.Genres = new SelectList(genres, "GenreId", "MovieGenre");
+   
     var editModel = new MovieEditViewModel 
     {
         Id  = movie.Id, 
