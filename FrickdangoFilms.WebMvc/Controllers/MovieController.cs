@@ -2,6 +2,7 @@ using System.Net;
 using FrickdangoFilms.Models.Movies;
 using FrickdangoFilms.Services.Genre;
 using FrickdangoFilms.Services.Movie;
+using FrickdangoFilms.Services.MPAA_Rating;
 using FrickdangoFilms.Services.Theater;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,12 +13,14 @@ public class MovieController : Controller
 {
 private readonly IMovieService _movieService; 
 private readonly IGenreService _genreService; 
-private readonly ITheaterService _theaterService;
-public MovieController(IMovieService movieService, IGenreService genreService, ITheaterService theaterService) 
+private readonly ITheaterService _theaterService; 
+private readonly IMPAA_RatingService _mpaaRatingsService;
+public MovieController(IMovieService movieService, IGenreService genreService, ITheaterService theaterService, IMPAA_RatingService ratingServcie) 
 {
     _movieService = movieService;  
     _genreService = genreService; 
     _theaterService = theaterService;
+    _mpaaRatingsService = ratingServcie;
 } 
 
 //Get Movie/Index 
@@ -43,8 +46,14 @@ public async Task<IActionResult> Create()
 { 
     var genres = await _genreService.GetAllGenresAsync();
     ViewBag.Genres = new SelectList(genres, "GenreId", "MovieGenre");
+    
     var theaters = await _theaterService.GetAllTheaterAsync(); 
-    ViewBag.Theaters = new SelectList(theaters, "TheaterId", "TheaterName");
+    ViewBag.Theaters = new SelectList(theaters, "Id", "TheaterName");
+   
+   var ratings = await _mpaaRatingsService.GetAllMPAARatingAsync();
+   ViewBag.Ratings = new SelectList( ratings, "Id", "MovieRating");
+
+   
     return View();
 } 
 
@@ -77,6 +86,8 @@ public async Task<IActionResult> Edit(int id)
     ViewBag.Genres = new SelectList(genres, "GenreId", "MovieGenre");
    var theaters = await _theaterService.GetAllTheaterAsync();
    ViewBag.Theaters = new SelectList(theaters, "TheaterId", "TheaterName");
+    var ratings = await _mpaaRatingsService.GetAllMPAARatingAsync();
+    ViewBag.Ratings = new SelectList(ratings, "MPAA_RatingId", "MPAA_Rating");
     var editModel = new MovieEditViewModel 
     {
         Id  = movie.Id, 
