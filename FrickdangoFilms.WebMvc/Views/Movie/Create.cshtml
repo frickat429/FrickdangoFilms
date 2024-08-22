@@ -50,7 +50,8 @@
       @foreach (var ratings in ViewBag.Ratings as IEnumerable<SelectListItem>)
       {
         <option value="@ratings.Value">@ratings.Text</option>
-      }
+      } 
+    <span asp-validation-for="MPAA_RatingId" class="text-danger"></span>
     </select>
   </div>
 
@@ -62,6 +63,7 @@
       {
         <option value="@theaters.Value">@theaters.Text</option>
       }
+       <span asp-validation-for="TheaterId" class="text-danger"></span>
     </select>
   </div>
 

@@ -84,10 +84,13 @@ public async Task<IActionResult> Edit(int id)
     } 
        var genres = await _genreService.GetAllGenresAsync();
     ViewBag.Genres = new SelectList(genres, "GenreId", "MovieGenre");
+
    var theaters = await _theaterService.GetAllTheaterAsync();
-   ViewBag.Theaters = new SelectList(theaters, "TheaterId", "TheaterName");
+   ViewBag.Theaters = new SelectList(theaters, "Id", "TheaterName");
+
     var ratings = await _mpaaRatingsService.GetAllMPAARatingAsync();
-    ViewBag.Ratings = new SelectList(ratings, "MPAA_RatingId", "MPAA_Rating");
+    ViewBag.Ratings = new SelectList(ratings, "Id", "MovieRating");
+    
     var editModel = new MovieEditViewModel 
     {
         Id  = movie.Id, 

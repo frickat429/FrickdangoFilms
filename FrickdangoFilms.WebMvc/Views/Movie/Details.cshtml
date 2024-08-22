@@ -1,0 +1,45 @@
+@model FrickdangoFilms.Models.Movies.MovieViewModel
+
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<div class="container mt-5">
+    <h1 class="display-4">@Model.MovieTitle</h1>
+    <hr />
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h5>Description</h5>
+            <p>@Model.MovieDescription</p>
+        </div>
+        <div class="col-md-6">
+            <h5>Runtime</h5>
+            <p>@Model.RuntimeInMinutes minutes</p>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h5>Genre</h5>
+            <p>@Model.MovieGenre</p>
+        </div>
+        <div class="col-md-6">
+            <h5>MPAA Rating</h5>
+            <p>@Model.MPAA_Rating</p>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h5>Theater</h5>
+            <p>@Model.TheaterName</p>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+    </div>
+</div>
