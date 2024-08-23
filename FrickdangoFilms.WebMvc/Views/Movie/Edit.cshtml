@@ -32,10 +32,19 @@
         <div class="col-md-6">
             <label asp-for="GenreId" class="form-label"></label>
             <select asp-for="GenreId" class="form-select">
-                <option value="">Select Genre</option>
-                @foreach (var genres in ViewBag.Genres as IEnumerable<SelectListItem>)
+                <option value="">--Select Genre--</option>
+                @foreach (var genre in ViewBag.Genres as IEnumerable<SelectListItem>)
                 {
-                    <option value="@genres.Value">@genres.Text</option>
+                    var isSelected = genre.Value == Model.GenreId.ToString();
+                    if (isSelected)
+                    {
+                    <option value="@genre.Value" Selected>@genre.Text</option>
+
+                    }
+                    else 
+                    {
+                        <option value="@genre.Value">@genre.Text</option>
+                    }
                 }
             </select>
             <span asp-validation-for="GenreId" class="text-danger"></span>
@@ -45,9 +54,17 @@
     <label asp-for="MPAA_RatingId" class="form-label"></label>
     <select asp-for="MPAA_RatingId" class="form-select">
       <option value="">--Select Rating--</option>
-      @foreach (var ratings in ViewBag.Ratings as IEnumerable<SelectListItem>)
+      @foreach (var rating in ViewBag.Ratings as IEnumerable<SelectListItem>)
       {
-        <option value="@ratings.Value">@ratings.Text</option>
+       var isSelected = rating.Value == Model.GenreId.ToString(); 
+       if (isSelected)
+       {
+        <option value="@rating.Value" Selected>@rating.Text</option>
+       }
+       else
+       {
+        <option value="@rating.Value">@rating.Text</option>
+       }
       } 
     <span asp-validation-for="MPAA_RatingId" class="text-danger"></span>
     </select>
@@ -57,9 +74,18 @@
             <label asp-for="TheaterId" class="form-label"></label>
             <select asp-for="TheaterId" class="form-select">
                 <option value="">Select Theater</option>
-                @foreach (var theaters in ViewBag.Theaters as IEnumerable<SelectListItem>)
-                {
-                    <option value="@theaters.Value">@theaters.Text</option>
+                @foreach (var theater in ViewBag.Theaters as IEnumerable<SelectListItem>)
+                { 
+                    var isSelected = theater.Value == Model.TheaterId.ToString();
+                    if (isSelected) 
+                    {
+                        <option value="@theater.Value" Selected>@theater.Text</option>
+                    }
+                    else 
+                    {
+                        <option value="@theater.Value">@theater.Text</option>
+                    }
+                    <option value="@theater.Value">@theater.Text</option>
                 }
                 <span asp-validation-for="TheaterId" class="text-danger"></span>
             </select>
