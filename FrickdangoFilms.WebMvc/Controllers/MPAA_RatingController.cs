@@ -14,7 +14,7 @@ public class MPAA_RatingController : Controller
 
     public async Task<IActionResult> Index() 
     {
-        var mpaaRating = _mpaaRatingService.GetAllMPAARatingAsync(); 
+        var mpaaRating = await _mpaaRatingService.GetAllMPAARatingAsync(); 
         return View(mpaaRating);
     } 
 

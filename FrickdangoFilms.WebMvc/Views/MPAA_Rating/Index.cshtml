@@ -1,0 +1,43 @@
+@model IEnumerable<FrickdangoFilms.Models.MPAA_Rating.MPAA_RatingViewModel>
+
+    @{
+        ViewData["Title"] = "MPAA Ratings Index";
+    }
+
+    <div class="container mt-4">
+        <h1 class="display-4">MPAA_Rating</h1>
+        @if (!Model.Any())
+        {
+            <div class="alert alert-info" role="alert">
+                No Rating found.
+            </div> 
+        }
+        else 
+        {
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>#</th>
+                            <th>MPAA_Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var rating in Model)
+                        {
+                            <tr>
+                                <td>@rating.Id</td>
+                                <td>@rating.MovieRating</td>
+                                <td class="text-end">
+                                    <a asp-action="Edit" asp-route-id="@rating.Id" class="btn btn-warning btn-sm">Edit</a>
+                                    <a asp-action="Details" asp-route-id="@rating.Id" class="btn btn-info btn-sm">Details</a>
+                                    <a asp-action="Delete" asp-action-id="@rating.Id" class="btn btn-danger btn-sm">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        <a asp-action="Create" class="btn btn-primary mt-3">Create New Rating</a>
+    </div>

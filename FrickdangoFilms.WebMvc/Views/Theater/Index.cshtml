@@ -1,0 +1,45 @@
+@model IEnumerable<FrickdangoFilms.Models.Theater.TheaterViewModel>
+
+    @{
+        ViewData["Title"] = "Theater Index";
+    }
+
+    <div class="container mt-4">
+        <h1 class="display-4">Theaters</h1>
+        @if (!Model.Any())
+        {
+            <div class="alert alert-info" role="alert">
+                No theaters found. 
+            </div>
+        }
+        else 
+        {
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Theater</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var theater in Model)
+                        {
+                            <tr>
+                                <td>@theater.Id</td>
+                                <td>@theater.TheaterName</td>
+                                <td class="text-end">
+                                 <a asp-action="Edit" asp-route-id="@theater.Id" class="btn-warning btn-sm">Edit</a>
+                                <a asp-action="Details" asp-route-id="@theater.Id" class="btn btn-info btn-sm">Details</a>
+                                <a asp-action="Delete" asp-route-id="@theater.Id" class="btn btn-danger btn-sm">Delete</a>
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                
+            </div>
+        }
+        <a asp-action="Create" class="btn btn-primary mt-3">Create New Theater</a>
+    </div>
