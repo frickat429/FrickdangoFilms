@@ -20,7 +20,7 @@ namespace FrickdangoFilms.Services.Genre
             return await _context.Genres
                 .Select(g => new GenreViewModel
                 {
-                    GenreId = g.Id,
+                    Id = g.Id,
                     MovieGenre = g.MovieGenre // Ensure the property name matches the ViewModel
                 })
                 .ToListAsync();
@@ -33,7 +33,7 @@ public async Task<GenreViewModel?> GetGenreByIdAsync(int id)
         .Where(g => g.Id == id)
         .Select(g => new GenreViewModel
         {
-            GenreId = g.Id,
+            Id = g.Id,
             MovieGenre = g.MovieGenre 
         })
         .FirstOrDefaultAsync();

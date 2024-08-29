@@ -88,6 +88,7 @@ public class MPAA_RatingController : Controller
 
 public async Task<IActionResult> ConfirmDelete(int id)
 {
+  
   await _mpaaRatingService.DeleteMovieRatingAsync(id);
   return RedirectToAction(nameof(Index));
 }
