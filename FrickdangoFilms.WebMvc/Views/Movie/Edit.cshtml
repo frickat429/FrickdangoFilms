@@ -19,7 +19,7 @@
         <div class="col-md-12">
             <label asp-for="MovieDescription" class="form-label">Description</label>
             <textarea asp-for="MovieDescription" class="form-control" rows="4"></textarea>
-    using Microsoft.EntityFrameworkCore.Metadata.Internal;
+    
             <span asp-validation-for="MovieDescription" class="text-danger"></span>
         </div>
 
@@ -56,7 +56,7 @@
       <option value="">--Select Rating--</option>
       @foreach (var rating in ViewBag.Ratings as IEnumerable<SelectListItem>)
       {
-       var isSelected = rating.Value == Model.GenreId.ToString(); 
+       var isSelected = rating.Value == Model.MPAA_RatingId.ToString(); 
        if (isSelected)
        {
         <option value="@rating.Value" Selected>@rating.Text</option>
