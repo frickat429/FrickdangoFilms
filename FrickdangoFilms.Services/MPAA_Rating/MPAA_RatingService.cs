@@ -50,6 +50,27 @@ public async Task<MPAA_RatingViewModel?> GetMPAARatingByIdAsync(int id)
         await _context.SaveChangesAsync();
         
     }
+        //Edit 
+    public async Task UpdateMovieRatingAsync(int id, MPAA_RatingEditVM model) 
+    {
+        var rating = await _context.MPAA_Ratings.FindAsync(id);
+        if (rating != null) 
+        {
+            rating.MovieRating = model.MovieRating;
+            _context.MPAA_Ratings.Update(rating);
+            await _context.SaveChangesAsync();
+        }
+    }
+    //Delete 
+    public async Task DeleteMovieRatingAsync(int id) 
+    {
+        var rating = await _context.MPAA_Ratings.FindAsync(id);
+        if(rating != null) 
+        {
+            _context.MPAA_Ratings.Remove(rating);
+            await _context.SaveChangesAsync();
+        }
+    }
 
     } 
 

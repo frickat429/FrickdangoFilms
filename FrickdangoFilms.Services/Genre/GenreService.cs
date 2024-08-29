@@ -50,6 +50,29 @@ public async Task<GenreViewModel?> GetGenreByIdAsync(int id)
             await _context.SaveChangesAsync();
         }
 
+        //Edit 
+        public async Task UpdateGenreAsync(int id, GenreEditVM model) 
+        {
+            var genre = await _context.Genres.FindAsync(id);
+            if (genre != null) 
+            {
+                genre.MovieGenre = model.MovieGenre;
+                _context.Genres.Update(genre);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        //Delete 
+        public async Task DeleteGenreAsync(int id) 
+        {
+            var genre = await _context.Genres.FindAsync(id);
+            if(genre != null) 
+            {
+                _context.Genres.Remove(genre);
+                await _context.SaveChangesAsync();
+            }
+        }
+
 
     }
 }

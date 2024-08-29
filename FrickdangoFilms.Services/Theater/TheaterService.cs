@@ -48,5 +48,27 @@ public async Task<TheaterViewModel?> GetTheaterByIdAsync(int id)
         _context.Theaters.Add(theater);
         await _context.SaveChangesAsync();
     }
+
+    //Edit 
+    public async Task UpdateTheaterAsync(int id, TheaterEditVM model) 
+    {
+        var theater = await _context.Theaters.FindAsync(id);
+        if (theater != null) 
+        {
+            theater.TheaterName = model.TheaterName;
+            _context.Theaters.Update(theater);
+            await _context.SaveChangesAsync();
+        }
+    }
+    //Delete 
+    public async Task DeleteTheaterAsync(int id) 
+    {
+        var theater = await _context.Theaters.FindAsync(id);
+        if(theater != null) 
+        {
+            _context.Theaters.Remove(theater);
+            await _context.SaveChangesAsync();
+        }
+    }
     }
 }

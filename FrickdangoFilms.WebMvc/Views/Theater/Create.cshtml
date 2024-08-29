@@ -1,0 +1,29 @@
+@model FrickdangoFilms.Models.Theater.TheaterCreateViewModel
+
+@{
+    ViewData["Title"] = "Create Theater";
+}
+
+@if (TempData["ErrorMsg"] != null) 
+{
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Error</strong> @TempData["ErrorMsg"]
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+}
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Create" method="post" class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="TheaterName" class="form-label">
+            <input asp-for="TheaterName" class="form-control">
+            <span asp-validation-for="TheaterName" class="text-danger"></span>
+        </label>
+    </div>
+
+       <div class="d-flex justify-content-between align items-baseline mt-4">
+     <a asp-action="Index" class="btn-secondary">Back to List</a>
+    <input type="submit" value="Create" class="btn btn-primary">
+    </div>
+
+</form>

@@ -7,4 +7,7 @@ public interface IMPAA_RatingService
     Task<IEnumerable<MPAA_RatingViewModel>> GetAllMPAARatingAsync();
     Task<MPAA_RatingViewModel> GetMPAARatingByIdAsync(int id) ;
     Task CreateMovieRatingAsync(MPAA_RatingCreateViewModel model);
+
+    Task UpdateMovieRatingAsync( int id, MPAA_RatingEditVM model);
+    Task DeleteMovieRatingAsync(int id);
 }
