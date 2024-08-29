@@ -45,7 +45,7 @@ public async Task<IActionResult> Details(int id)
 public async Task<IActionResult> Create() 
 { 
     var genres = await _genreService.GetAllGenresAsync();
-    ViewBag.Genres = new SelectList(genres, "GenreId", "MovieGenre");
+    ViewBag.Genres = new SelectList(genres, "Id", "MovieGenre");
     
     var theaters = await _theaterService.GetAllTheaterAsync(); 
     ViewBag.Theaters = new SelectList(theaters, "Id", "TheaterName");
@@ -83,7 +83,7 @@ public async Task<IActionResult> Edit(int id)
         return NotFound();
     } 
        var genres = await _genreService.GetAllGenresAsync();
-    ViewBag.Genres = new SelectList(genres, "GenreId", "MovieGenre");
+    ViewBag.Genres = new SelectList(genres, "Id", "MovieGenre");
 
    var theaters = await _theaterService.GetAllTheaterAsync();
    ViewBag.Theaters = new SelectList(theaters, "Id", "TheaterName");
