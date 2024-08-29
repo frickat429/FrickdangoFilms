@@ -1,0 +1,22 @@
+@model FrickdangoFilms.Models.Genre.GenreEditVM
+
+@{
+    ViewData["Title"] = "Edit Genre";
+}
+
+<h1 class="display-4">Edit Movie</h1>
+<hr />
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form asp-action="Edit" method="post" class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="MovieGenre" class="form-label">Genre</label>
+        <input asp-for="MovieGenre" class="form-control">
+        <span asp-validation-for="MovieGenre" class="text-danger"></span>
+        </div>
+          <div class="d-flex justify-content-between align-items-baseline">
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            <input type="submit" value="Save Changes" class="btn btn-primary">
+        </div>
+        </form>

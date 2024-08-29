@@ -88,6 +88,7 @@ public async Task<IActionResult> Delete(int id)
     {
         return NotFound();
     }
+    
     return View(genre);
 }
 
